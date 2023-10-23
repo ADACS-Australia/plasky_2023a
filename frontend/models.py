@@ -1,5 +1,6 @@
 from django.core.validators import RegexValidator
 from django.db import models
+from django.db.models import UniqueConstraint, Q
 
 
 class Subject(models.Model):
@@ -23,3 +24,4 @@ class Subject(models.Model):
     l1 = models.BooleanField(default=False)
     v1 = models.BooleanField(default=False)
     k1 = models.BooleanField(default=False)
+

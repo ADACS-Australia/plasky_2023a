@@ -8,46 +8,67 @@
         <form class="mb-3">
             <div class="form-label col-lg-4">
                 <label for="superevent">Superevent ID:</label>
-                <input class="form-control" id="superevent" name="superevent" type="text" placeholder="S170817b" required>
+                <input class="form-control" id="superevent" name="superevent" type="text" placeholder="S170817b"
+                       required>
             </div>
             <button class="btn btn-primary" type="submit">Search</button>
         </form>
         <hr>
         <h4>Add manually</h4>
-        <form class="mb-3">
+        <form
+                class="mb-3"
+                hx-post="{% url 'add-subject' %}"
+                hx-target="#subject-list"
+                hx-target-error="errors"
+                method="POST"
+        >
+            <div id="errors"></div>
             <div class="form-label col-lg-4">
-                <label for="event-id">Event ID:</label>
-                <input class="form-control" id="event-id" name="event-id" type="text" placeholder="GW123456_123456" required>
+                <label for="event_id">Event ID:</label>
+                <input
+                        class="form-control"
+                        id="event_id"
+                        name="event_id"
+                        type="text"
+                        placeholder="GW123456_123456"
+                        required
+                        hx-post="{% url 'check-event-id' %}"
+                        hx-trigger="keyup"
+                        hx-target="#event-id-exists"
+                >
+                <p id="event-id-exists" class="fw-bold text-danger"></p>
             </div>
             <div class="form-label col-lg-4">
-                <label for="gps-time">GPS Time:</label>
-                <input class="form-control" id="gps-time" name="gps-time" type="text" placeholder="1126259462.391" required>
+                <label for="gps_time">GPS Time:</label>
+                <input class="form-control" id="gps_time" name="gps_time" type="text" placeholder="1126259462.391"
+                       required>
             </div>
+            <span>Detectors:</span>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="h1check" name="h1check">
-                <label class="form-check-label" for="h1check">
+                <input class="form-check-input" type="checkbox" value="true" id="h1" name="h1">
+                <label class="form-check-label" for="h1">
                     H1
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="l1check" name="l1check">
-                <label class="form-check-label" for="l1check">
+                <input class="form-check-input" type="checkbox" value="true" id="l1" name="l1">
+                <label class="form-check-label" for="l1">
                     L1
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="v1check" name="v1check">
-                <label class="form-check-label" for="v1check">
+                <input class="form-check-input" type="checkbox" value="true" id="v1" name="v1">
+                <label class="form-check-label" for="v1">
                     V1
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="k1check" name="k1check">
-                <label class="form-check-label" for="k1check">
+                <input class="form-check-input" type="checkbox" value="true" id="k1" name="k1">
+                <label class="form-check-label" for="k1">
                     K1
                 </label>
             </div>
-            <button class="btn btn-primary" type="submit">Add</button>
+            <button class="btn btn-primary mt-3" type="submit">Add</button>
         </form>
     </div>
 {% endblock %}
