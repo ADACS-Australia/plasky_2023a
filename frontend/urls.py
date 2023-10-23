@@ -20,5 +20,6 @@ import frontend.views
 
 
 urlpatterns = [
-    path('', frontend.views.index)
+    path('', frontend.views.index, name="index"),
+    path('add-subject', frontend.views.add_subject, name="add-subject"),
 ]

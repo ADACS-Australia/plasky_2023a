@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h3>Add Subject</h3>
+    <hr>
+    <div class="container">
+        <h4>Add from GraceDB</h4>
+        <p>Use information from a detection pipeline to create your new event</p>
+        <form class="mb-3">
+            <div class="form-label col-lg-4">
+                <label for="superevent">Superevent ID:</label>
+                <input class="form-control" id="superevent" name="superevent" type="text" placeholder="S170817b" required>
+            </div>
+            <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+        <hr>
+        <h4>Add manually</h4>
+        <form class="mb-3">
+            <div class="form-label col-lg-4">
+                <label for="event-id">Event ID:</label>
+                <input class="form-control" id="event-id" name="event-id" type="text" placeholder="GW123456_123456" required>
+            </div>
+            <div class="form-label col-lg-4">
+                <label for="gps-time">GPS Time:</label>
+                <input class="form-control" id="gps-time" name="gps-time" type="text" placeholder="1126259462.391" required>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="h1check" name="h1check">
+                <label class="form-check-label" for="h1check">
+                    H1
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="l1check" name="l1check">
+                <label class="form-check-label" for="l1check">
+                    L1
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="v1check" name="v1check">
+                <label class="form-check-label" for="v1check">
+                    V1
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="k1check" name="k1check">
+                <label class="form-check-label" for="k1check">
+                    K1
+                </label>
+            </div>
+            <button class="btn btn-primary" type="submit">Add</button>
+        </form>
+    </div>
+{% endblock %}
