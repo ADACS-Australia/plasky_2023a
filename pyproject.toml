@@ -6,8 +6,8 @@ authors = ["Lewis Lakerink <llakerink@swin.edu.au>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = ">=3.8"
-Django = "^4.2.5"
+python = ">=3.7"
+Django = "=3.2"
 asimov = ">=0"
 
 [tool.poetry.dev-dependencies]
