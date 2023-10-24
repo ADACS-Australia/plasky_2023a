@@ -1,24 +1,48 @@
+from functools import reduce
+
 from django.core.exceptions import ValidationError
-from django.forms import ModelForm, CheckboxInput
+from django import forms
 
 from frontend.models import Subject
 
 
-DETECTORS = ["h1", "l1", "v1", "k1"]
-CheckboxInput
-
-
-class SubjectForm(ModelForm):
+class SubjectForm(forms.ModelForm):
     class Meta:
         model = Subject
-        fields = ["event_id", "gps_time"] + DETECTORS
+        exclude = ["trigger_id", "detectors"]
 
-    def clean(self):
+    event_id = forms.CharField(
+        widget=forms.TextInput(
+            attrs={'placeholder': 'GW123456_123456'}
+        )
+    )
+
+    gps_time = forms.CharField(
+        widget=forms.TextInput(
+            attrs={'placeholder': '1126259462.391'}
+        )
+    )
+
+    detector_multi = forms.TypedMultipleChoiceField(
+        coerce=int,
+        choices=Subject.DETECTOR_CHOICES,
+        required=True,
+        widget=forms.CheckboxSelectMultiple()
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['detector_multi'].initial = [
+            c for c, _ in Subject.DETECTOR_CHOICES
+            if self.instance.detectors & c
+        ]
+
+    def save(self, *args, **kwargs):
         cleaned_data = super().clean()
+        self.instance.detectors = reduce(
+            lambda x, y: x | y,
+            cleaned_data.get('detector_multi', []),
+            0)
 
-        detector_valid = any(cleaned_data[detector] for detector in DETECTORS)
+        return super().save(*args, **kwargs)
 
-        if not detector_valid:
-            raise ValidationError(
-                "At least one detector must be selected"
-            )

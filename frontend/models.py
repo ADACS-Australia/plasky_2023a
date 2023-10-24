@@ -1,9 +1,19 @@
 from django.core.validators import RegexValidator
 from django.db import models
-from django.db.models import UniqueConstraint, Q
 
 
 class Subject(models.Model):
+    H1 = 1
+    L1 = 2
+    V1 = 4
+    K1 = 8
+    DETECTOR_CHOICES = (
+        (H1, 'H1'),
+        (L1, 'L1'),
+        (V1, 'V1'),
+        (K1, 'K1'),
+    )
+
     event_id = models.CharField(
         max_length=15,
         blank=False,
@@ -20,8 +30,5 @@ class Subject(models.Model):
     gps_time = models.FloatField(default=1126259462.391)
 
     # Detector configuration
-    h1 = models.BooleanField(default=False)
-    l1 = models.BooleanField(default=False)
-    v1 = models.BooleanField(default=False)
-    k1 = models.BooleanField(default=False)
+    detectors = models.IntegerField(default=0)
 

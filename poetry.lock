@@ -13,6 +13,21 @@ typing-extensions = {version = ">=4", markers = "python_version < \"3.11\""}
 tests = ["pytest", "pytest-asyncio", "mypy (>=0.800)"]
 
 [[package]]
+name = "beautifulsoup4"
+version = "4.12.2"
+description = "Screen-scraping library"
+category = "main"
+optional = false
+python-versions = ">=3.6.0"
+
+[package.dependencies]
+soupsieve = ">1.2"
+
+[package.extras]
+html5lib = ["html5lib"]
+lxml = ["lxml"]
+
+[[package]]
 name = "certifi"
 version = "2023.7.22"
 description = "Python package for providing Mozilla's CA Bundle."
@@ -76,6 +91,21 @@ sqlparse = ">=0.2.2"
 [package.extras]
 argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
+
+[[package]]
+name = "django-bootstrap-v5"
+version = "1.0.11"
+description = "Bootstrap 5 support for Django projects"
+category = "main"
+optional = false
+python-versions = ">=3.6,<4.0"
+
+[package.dependencies]
+beautifulsoup4 = ">=4.8.0,<5.0.0"
+django = ">=2.2,<5.0"
+
+[package.extras]
+docs = ["sphinx (>=4.4,<5.0)", "sphinx_rtd_theme (>=1.0,<2.0)", "m2r2 (>=0.2.5,<0.3.0)"]
 
 [[package]]
 name = "future"
@@ -205,6 +235,14 @@ requests = "*"
 docs = ["sphinx"]
 
 [[package]]
+name = "soupsieve"
+version = "2.4.1"
+description = "A modern CSS selector implementation for Beautiful Soup."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[[package]]
 name = "sqlparse"
 version = "0.4.4"
 description = "A non-validating SQL parser."
@@ -241,16 +279,18 @@ zstd = ["zstandard (>=0.18.0)"]
 
 [metadata]
 lock-version = "1.1"
-python-versions = ">=3.7"
-content-hash = "799d56103eb9109c69b3e6face6e750ce35681e35f2f7fb34afb47d0c9395b86"
+python-versions = ">=3.7,<4.0"
+content-hash = "d4dea27bce98d2b121a95375f069a6d747bd9055b34e86d1ad31b9caa2dc97ab"
 
 [metadata.files]
 asgiref = []
+beautifulsoup4 = []
 certifi = []
 cffi = []
 charset-normalizer = []
 cryptography = []
 django = []
+django-bootstrap-v5 = []
 future = []
 idna = []
 igwn-auth-utils = []
@@ -261,6 +301,7 @@ pytz = []
 requests = []
 safe-netrc = []
 scitokens = []
+soupsieve = []
 sqlparse = []
 typing-extensions = []
 urllib3 = []

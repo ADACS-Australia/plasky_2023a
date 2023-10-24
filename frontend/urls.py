@@ -22,6 +22,5 @@ import frontend.views
 urlpatterns = [
     path('', frontend.views.index, name="index"),
     path('add-subject', frontend.views.add_subject, name="add-subject"),
-    path('check-event-id', frontend.views.check_event_id, name="check-event-id"),
     path('view-subject/<int:subject_id>/', frontend.views.view_subject, name="view-subject"),
 ]

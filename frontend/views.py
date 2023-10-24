@@ -13,28 +13,20 @@ def index(request):
 def add_subject(request):
     if request.method == "POST":
         subject = SubjectForm(request.POST)
-        try:
+        if subject.is_valid():
             saved = subject.save()
-        except ValueError:
-            return render(
-                request,
-                'parts/add-subject-error.html',
-                {'form': subject},
-                status=400
+            return HttpResponse(
+                headers={"HX-Redirect": reverse('view-subject', kwargs={'subject_id': saved.id})}
             )
 
-        return HttpResponse(
-            headers={"HX-Redirect": reverse('view-subject', kwargs={'subject_id': saved.id})}
+        return render(
+            request,
+            'parts/add-subject-form.html',
+            {'form': subject}
         )
 
-    return render(request, 'add-subject.html')
-
-
-def check_event_id(request):
-    if Subject.objects.filter(event_id=request.POST['event_id']).exists():
-        return HttpResponse("Event ID already exists")
-
-    return HttpResponse("")
+    subject = SubjectForm()
+    return render(request, 'add-subject.html', {'form': subject})
 
 
 def view_subject(request, subject_id):
