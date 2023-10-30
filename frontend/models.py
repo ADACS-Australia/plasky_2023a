@@ -3,6 +3,9 @@ from django.db import models
 
 
 class Subject(models.Model):
+    """
+    A Subject is equivalent to a LIGO detection event. A Subject may have multiple unique analysis pipelines
+    """
     H1 = 1
     L1 = 2
     V1 = 4
