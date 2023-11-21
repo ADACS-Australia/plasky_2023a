@@ -32,6 +32,5 @@ class Subject(models.Model):
     )
     gps_time = models.FloatField(default=1126259462.391)
 
-    # Detector configuration
+    # Detector configuration, this is a bitmask of DETECTOR_CHOICES. ie, 1 + 4 = 5 = H1 and V1
     detectors = models.IntegerField(default=0)
-
