@@ -1,0 +1,9 @@
+{% load bootstrap5 %}
+
+<form method="post" class="form" hx-target="this">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <button type="submit" class="btn btn-primary">
+        Submit
+    </button>
+</form>

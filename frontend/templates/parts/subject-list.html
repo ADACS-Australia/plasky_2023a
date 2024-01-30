@@ -1,0 +1,15 @@
+<ul class="nav nav-pills flex-column mb-auto">
+    {% for subject in subjects %}
+        <li class="nav-item">
+            <a href="{% url 'view-subject' subject_id=subject.id %}" class="nav-link">
+                {{ subject.event_id }}
+            </a>
+        </li>
+        <li>
+    {% endfor %}
+    <a href="{% url "add-subject" %}" class="nav-link">
+        <i class="bi-plus-square me-2"></i>
+        Add subject...
+    </a>
+    </li>
+</ul>
